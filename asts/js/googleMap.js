@@ -1,5 +1,5 @@
 /*
- * googleMap jQuery Plugin v1.0.0.2b
+ * googleMap jQuery Plugin v1.2.1.1b
  * Licensed under the MIT license.
  * Copyright 2012 G.Burak Demirezen
  */ 
@@ -12,7 +12,10 @@
 			finishImage : 'asts/imgs/finish.png',
 			directionDrag : false,
 			readOnline : false,
-			zoom : 6
+			zoom : 6,
+			contentText : 'googleMapDemo',
+			startTitle : 'Başlangıç Noktası',
+			finishTitle : 'Varış Noktası'
         },
             settings = $.extend(defaults, options);
 			
@@ -85,7 +88,7 @@
                 }
                 $directionsDisplay.setMap(null);
                 $markerStart = new google.maps.Marker({
-                    title: 'Başlangıç Noktası',
+                    title: settings.startTitle,
                     position: location,
                     map: $map,
                     draggable: $markersDrag,
@@ -140,7 +143,7 @@
                 }
                 $directionsDisplay.setMap(null);
                 $markerFinish = new google.maps.Marker({
-                    title: 'Varış Noktası',
+                    title: settings.finishTitle,
                     position: location,
                     map: $map,
                     draggable: $markersDrag,
@@ -181,12 +184,12 @@
 		
 		$.fn.googleMap.changePosition = function(start,finish){
 			$.defaultMap(start,finish);
-		}
+		};
 		
 		$.createJSON = function(data){
 			var json = data.split(',');
 			return '{"position":['+ json[0] +','+ json[1] +']}';
-		}
+		};
 		
 		$.defaultMap = function(start,finish){
 			if(!settings.readOnline){
@@ -195,9 +198,18 @@
 			}else{
 				$.startPosition($.createJSON(start));
 			}
-		}
+		};
 		
 		/*default pozition trigger*/
 		$.defaultMap(settings.start,settings.finish);
+		
+		if(settings.readOnline){
+			var infowindow = new google.maps.InfoWindow({
+				content: settings.contentText
+			});
+			google.maps.event.addListener($markerStart, 'mouseover', function() {
+			  infowindow.open($map, $markerStart);
+			});	
+		};
     };
 })(jQuery);

@@ -32,7 +32,10 @@ $(function () {
 		finishImage : 'asts/imgs/finish.png',
 		directionDrag : true,
 		readOnline : false,
-		zoom : 6	
+		zoom : 6,
+		contentText : '<b style="color:#1796c1">googleMap demo with Jquery</b> <br/><br/> <b style="color:#555">Copyright :</b> 2012',
+		startTitle : 'Başlangıç Noktası',
+		finishTitle : 'Varış Noktası'	
 	});
     $('.start').change(function () {
         $.fn.googleMap.changePosition($(this).val(),$('.finish').val());
