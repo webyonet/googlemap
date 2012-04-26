@@ -26,13 +26,13 @@
 <script type="text/javascript">
 $(function () {
 	$('#mapCanvas').googleMap({
-		start: '{"position":[39.920914,32.854119]}',
-		finish: '{"position":[41.005280,28.976321]}',
+		start: '39.920914,32.854119',
+        finish: '41.005280,28.976321',
 		startImage : 'asts/imgs/start.png',
 		finishImage : 'asts/imgs/finish.png',
 		directionDrag : true,
-		readOnline : false,
-		zoom : 6	
+		readOnline : true,
+		zoom : 15	
 	});
     $('.start').change(function () {
         $.startPosition($(this).val());

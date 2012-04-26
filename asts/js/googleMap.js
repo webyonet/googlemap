@@ -6,8 +6,8 @@
 (function ($) {
     $.fn.googleMap = function (options) {
         var defaults = {
-            start: '{"position":[39.920914,32.854119]}',
-            finish: '{"position":[41.005280,28.976321]}',
+            start: '39.920914,32.854119',
+            finish: '41.005280,28.976321',
 			startImage : 'asts/imgs/start.png',
 			finishImage : 'asts/imgs/finish.png',
 			directionDrag : false,
@@ -179,12 +179,17 @@
             }
         }; //finish poszition end
 		
+		$.createJSON = function(data){
+			var json = data.split(',');
+			return '{"position":['+ json[0] +','+ json[1] +']}';
+		}
+		
 		$.defaultMap = function(){
 			if(!settings.readOnline){
-				$.startPosition(settings.start);
-				$.finishPosition(settings.finish);
+				$.startPosition($.createJSON(settings.start));
+				$.finishPosition($.createJSON(settings.finish));
 			}else{
-				$.startPosition(settings.start);
+				$.startPosition($.createJSON(settings.start));
 			}
 		}
 		
