@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>google map demo</title>
+<script type="text/javascript" src="asts/js/jquery_1.7.1.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="asts/js/googleMap.js"></script>
+</head>
+<body>
+<div id="mapCanvas" style="width:732px; height:287px; position:relative;"></div>
+<select class="start">
+  <option value="">Yok</option>
+  <option value='{"position":[39.920914,32.854119]}' selected="selected">Ankara</option>
+  <option value='{"position":[41.005280,28.976321]}'>İstanbul</option>
+  <option value='{"position":[38.420170,27.127855]}'>İzmir</option>
+</select>
+<select class="finish">
+  <option value="">Yok</option>
+  <option value='{"position":[39.920914,32.854119]}'>Ankara</option>
+  <option value='{"position":[41.005280,28.976321]}' selected="selected">İstanbul</option>
+  <option value='{"position":[38.420170,27.127855]}'>İzmir</option>
+</select>
+<div id="startLocationInfo"></div>
+<div id="finishLocationInfo"></div>
+<div id="mapCanvas1" style="width:732px; height:287px; position:relative;"></div>
+<script type="text/javascript">
+$(function () {
+	$('#mapCanvas').googleMap({
+		start: '{"position":[39.920914,32.854119]}',
+		finish: '{"position":[41.005280,28.976321]}',
+		startImage : 'asts/imgs/start.png',
+		finishImage : 'asts/imgs/finish.png',
+		directionDrag : true,
+		readOnline : false,
+		zoom : 6	
+	});
+    $('.start').change(function () {
+        $.startPosition($(this).val());
+    });
+    $('.finish').change(function () {
+        $.finishPosition($(this).val());
+    });
+});	 
+</script>
+</body>
+</html>
