@@ -10,15 +10,15 @@
 <div id="mapCanvas" style="width:732px; height:287px; position:relative;"></div>
 <select class="start">
   <option value="">Yok</option>
-  <option value='{"position":[39.920914,32.854119]}' selected="selected">Ankara</option>
-  <option value='{"position":[41.005280,28.976321]}'>İstanbul</option>
-  <option value='{"position":[38.420170,27.127855]}'>İzmir</option>
+  <option value='39.920914,32.854119' selected="selected">Ankara</option>
+  <option value='41.005280,28.976321'>İstanbul</option>
+  <option value='38.420170,27.127855'>İzmir</option>
 </select>
 <select class="finish">
   <option value="">Yok</option>
-  <option value='{"position":[39.920914,32.854119]}'>Ankara</option>
-  <option value='{"position":[41.005280,28.976321]}' selected="selected">İstanbul</option>
-  <option value='{"position":[38.420170,27.127855]}'>İzmir</option>
+  <option value='39.920914,32.854119'>Ankara</option>
+  <option value='41.005280,28.976321' selected="selected">İstanbul</option>
+  <option value='38.420170,27.127855'>İzmir</option>
 </select>
 <div id="startLocationInfo"></div>
 <div id="finishLocationInfo"></div>
@@ -31,14 +31,14 @@ $(function () {
 		startImage : 'asts/imgs/start.png',
 		finishImage : 'asts/imgs/finish.png',
 		directionDrag : true,
-		readOnline : true,
-		zoom : 15	
+		readOnline : false,
+		zoom : 6	
 	});
     $('.start').change(function () {
-        $.startPosition($(this).val());
+        $.fn.googleMap.changePosition($(this).val(),$('.finish').val());
     });
     $('.finish').change(function () {
-        $.finishPosition($(this).val());
+        $.fn.googleMap.changePosition($(this).val(),$('.start').val());
     });
 });	 
 </script>

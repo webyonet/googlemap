@@ -179,21 +179,25 @@
             }
         }; //finish poszition end
 		
+		$.fn.googleMap.changePosition = function(start,finish){
+			$.defaultMap(start,finish);
+		}
+		
 		$.createJSON = function(data){
 			var json = data.split(',');
 			return '{"position":['+ json[0] +','+ json[1] +']}';
 		}
 		
-		$.defaultMap = function(){
+		$.defaultMap = function(start,finish){
 			if(!settings.readOnline){
-				$.startPosition($.createJSON(settings.start));
-				$.finishPosition($.createJSON(settings.finish));
+				$.startPosition($.createJSON(start));
+				$.finishPosition($.createJSON(finish));
 			}else{
-				$.startPosition($.createJSON(settings.start));
+				$.startPosition($.createJSON(start));
 			}
 		}
 		
 		/*default pozition trigger*/
-		$.defaultMap();
+		$.defaultMap(settings.start,settings.finish);
     };
 })(jQuery);
